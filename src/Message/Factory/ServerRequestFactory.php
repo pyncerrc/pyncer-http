@@ -59,8 +59,6 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
     {
         $serverParams = $this->normalizeServerParams($_SERVER);
 
-        // $serverParams['Authorization'] = 'Bearer 9ypmx9LRzti0gTGpleG2DY0amexj3aWlosFePpJZIlRPOn_IWQnH6TPipGYLYe96r9fgF1PBa7VBVVvM2AfhprXGqQ7EZ-1J';
-
         $method = $serverParams['REQUEST_METHOD'] ?? 'GET';
         $method = strtoupper($method);
 
