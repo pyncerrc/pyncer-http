@@ -1,0 +1,27 @@
+{
+    "name": "pyncer/http",
+    "type": "library",
+    "description": "Pyncer implementation of PSR-7, PSR-15, and PSR-17.",
+    "homepage": "https://pyncer.com/http",
+    "license": "Unlicense",
+    "require": {
+        "php": ">=8.1",
+        "ext-mbstring": "*",
+        "psr/http-message": "^1.0.1",
+        "psr/http-server-handler": "^1.0.1",
+        "psr/http-server-middleware": "^1.0.1",
+        "psr/http-factory": "^1.0.1",
+        "pyncer/container": "*",
+        "pyncer/core": "*",
+        "pyncer/exception": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pyncer\\Http\\": "src/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/pyncerrc/pyncer-http/issues",
+        "source": "https://github.com/pyncerrc/pyncer-http"
+    }
+}
