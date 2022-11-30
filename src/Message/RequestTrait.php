@@ -96,7 +96,7 @@ trait RequestTrait
 
     public function withMethod($method): static
     {
-        if (!is_string($value)) {
+        if (!is_string($method)) {
             throw new InvalidArgumentException(sprintf(
                 'Unsupported HTTP method value "%s" provided; must be a string.',
                 (is_object($method) ? $method::class : gettype($method))
