@@ -14,6 +14,8 @@ use function is_array;
 use function json_decode;
 use function json_encode;
 
+use const Pyncer\ENCODING as PYNCER_ENCODING;
+
 class DataResponse extends Response implements DataResponseInterface
 {
     private array $parsedBody = [];
@@ -24,8 +26,10 @@ class DataResponse extends Response implements DataResponseInterface
         Status $status = Status::SUCCESS_200_OK,
         array $body = []
     ) {
+        $encoding = strtolower(PYNCER_ENCODING);
+
         $headers = [
-            'Content-Type' => 'application/json',
+            'Content-Type' => 'application/json; charset=' . $encoding,
             'Content-Disposition' => 'attachment; filename="data.json"'
         ];
 
@@ -52,11 +56,22 @@ class DataResponse extends Response implements DataResponseInterface
     {
         $this->jsonpCallback = $value;
 
+        $encoding = strtolower(PYNCER_ENCODING);
+
         if ($this->jsonpCallback === '') {
-            $this->setHeader('Content-Type', 'application/json');
-            $this->setHeader('Content-Disposition', 'attachment; filename="data.json"');
+            $this->setHeader(
+                'Content-Type',
+                'application/json; charset=' . $encoding
+            );
+            $this->setHeader(
+                'Content-Disposition',
+                'attachment; filename="data.json"'
+            );
         } else {
-            $this->setHeader('Content-Type', 'application/javascript');
+            $this->setHeader(
+                'Content-Type',
+                'application/javascript; charset=' . $encoding
+            );
             $this->setHeader('Content-Disposition', null);
         }
 

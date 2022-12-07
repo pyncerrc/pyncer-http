@@ -6,7 +6,6 @@
     "license": "Unlicense",
     "require": {
         "php": ">=8.1",
-        "ext-mbstring": "*",
         "psr/http-message": "^1.0.1",
         "psr/http-server-handler": "^1.0.1",
         "psr/http-server-middleware": "^1.0.1",
