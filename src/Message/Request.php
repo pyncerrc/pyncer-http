@@ -20,13 +20,13 @@ class Request implements PsrRequestInterface
     public function __construct(
         string $method = 'GET',
         null|string|PsrUriInterface $uri = null,
+        array|Headers $headers = [],
         mixed $body = 'php://temp',
-        array|Headers $headers = []
     ) {
         $this->setMethod($method);
         $this->setUri($uri);
-        $this->setBody($body);
         $this->setHeaders($headers);
+        $this->setBody($body);
     }
 
     /**

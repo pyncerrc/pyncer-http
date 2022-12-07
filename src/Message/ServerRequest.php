@@ -25,14 +25,14 @@ class ServerRequest implements ServerRequestInterface
     public function __construct(
         string $method = 'GET',
         null|string|UriInterface $uri = null,
-        mixed $body = 'php://input',
         array|Headers $headers = [],
+        mixed $body = 'php://input',
         array $serverParams = []
     ) {
         $this->setMethod($method);
         $this->setUri($uri);
-        $this->setBody($body);
         $this->setHeaders($headers);
+        $this->setBody($body);
         $this->setServerParams($serverParams);
     }
 

@@ -13,12 +13,12 @@ class Response implements ResponseInterface
 
     public function __construct(
         Status $status = Status::SUCCESS_200_OK,
+        array $headers = [],
         mixed $body = 'php://temp',
-        array $headers = []
     ) {
         $this->setStatus($status);
-        $this->setBody($body);
         $this->setHeaders($headers);
+        $this->setBody($body);
     }
 
     /**

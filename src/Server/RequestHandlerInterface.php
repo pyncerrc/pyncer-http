@@ -1,6 +1,7 @@
 <?php
 namespace Pyncer\Http\Server;
 
+use Countable;
 use Psr\Http\Message\ResponseInterface as PsrResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface as PsrRequestHandlerInterface;
@@ -10,8 +11,8 @@ use Pyncer\Http\Server\MiddlewareInterface;
 
 interface RequestHandlerInterface extends
     ContainerInterface,
-    PsrRequestHandlerInterface,
-    \Countable
+    Countable,
+    PsrRequestHandlerInterface
 {
     public function append(
         PsrMiddlewareInterface|MiddlewareInterface|callable ...$callable

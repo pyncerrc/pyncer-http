@@ -47,11 +47,9 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
         }
 
         return new ServerRequest(
-            $method,
-            $uri,
-            'php://input',
-            [],
-            $serverParams
+            method: $method,
+            uri: $uri,
+            serverParams: $serverParams
         );
     }
 
@@ -69,11 +67,10 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
         $uri = (new UriFactory())->createUriFromServerParams($serverParams);
 
         $request = new ServerRequest(
-            $overrideMethod,
-            $uri,
-            'php://input',
-            $headers,
-            $serverParams
+            method: $overrideMethod,
+            uri: $uri,
+            headers: $headers,
+            serverParams: $serverParams
         );
 
         // Only requred if not originally POST

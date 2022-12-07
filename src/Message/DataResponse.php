@@ -31,8 +31,8 @@ class DataResponse extends Response implements DataResponseInterface
 
         parent::__construct(
             $status,
+            $headers,
             'php://temp',
-            $headers
         );
 
         $this->setParsedBody($body);
