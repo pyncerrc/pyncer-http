@@ -189,7 +189,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withScheme($scheme)
+    public function withScheme($cheme): static
     {
         $scheme = $this->cleanScheme($scheme);
 
@@ -204,7 +204,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withUserInfo($user, $password = null)
+    public function withUserInfo($user, $password = null): static
     {
         $userInfo = $user;
 
@@ -219,7 +219,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withHost($host)
+    public function withHost($host): static
     {
         $new = clone $this;
         $new->setHost($host);
@@ -228,7 +228,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withPort($port)
+    public function withPort($port): static
     {
         $new = clone $this;
         $new->setPort($port);
@@ -237,7 +237,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withPath($path)
+    public function withPath($path): static
     {
         $new = clone $this;
         $new->setPath($path);
@@ -246,7 +246,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withQuery($query)
+    public function withQuery($query): static
     {
         $new = clone $this;
         $new->setQuery($query);
@@ -256,14 +256,14 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withFragment($fragment)
+    public function withFragment($fragment): static
     {
         $new = clone $this;
         $new->setFragment($fragment);
         return $new;
     }
 
-    private function setParts(array $parts)
+    private function setParts(array $parts): void
     {
         if (isset($parts['scheme'])) {
             $this->setScheme($parts['scheme']);
@@ -298,7 +298,7 @@ class Uri implements PsrUriInterface
         }
     }
 
-    protected function cleanScheme($scheme)
+    protected function cleanScheme(string $scheme): string
     {
         $scheme = strtolower($scheme);
         $scheme = rtrim($scheme, ':/');

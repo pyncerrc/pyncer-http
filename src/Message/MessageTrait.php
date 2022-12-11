@@ -75,7 +75,7 @@ trait MessageTrait
     {
         $new = clone $this;
 
-        $this->headers->setHeader($name, $value);
+        $new->headers->setHeader($name, $value);
 
         return $new;
     }

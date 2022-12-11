@@ -47,7 +47,7 @@ enum Status: int
     case CLIENT_ERROR_412_PRECONDITION_FAILED = 412;
     case CLIENT_ERROR_413_REQUEST_ENTITY_TOO_LARGE = 413;
     case CLIENT_ERROR_414_REQUEST_URI_TOO_LONG = 414;
-    case CLIENT_ERROR_415_UNSUxpED_MEDIA_TYPE = 415;
+    case CLIENT_ERROR_415_UNSUPPORTED_MEDIA_TYPE = 415;
     case CLIENT_ERROR_416_REQUESTED_RANGE_NOT_SATISFIABLE = 416;
     case CLIENT_ERROR_417_EXPECTATION_FAILED = 417;
     case CLIENT_ERROR_418_IM_A_TEAPOT = 418;
@@ -67,7 +67,7 @@ enum Status: int
     case SERVER_ERROR_502_BAD_GATEWAY = 502;
     case SERVER_ERROR_503_SERVICE_UNAVAILABLE = 503;
     case SERVER_ERROR_504_GATEWAY_TIMEOUT = 504;
-    case SERVER_ERROR_505_HTTP_VERSION_NOT_SUxpED = 505;
+    case SERVER_ERROR_505_HTTP_VERSION_NOT_SUPPORTED = 505;
     case SERVER_ERROR_506_VARIANT_ALSO_NEGOTIATES = 506;
     case SERVER_ERROR_507_INSUFFIECIENT_STORAGE = 507;
     case SERVER_ERROR_508_LOOP_DETECTED = 508;
@@ -112,7 +112,7 @@ enum Status: int
         412 => 'Precondition Failed',
         413 => 'Request Entity Too Large',
         414 => 'Request-URI Too Large',
-        415 => 'Unsuxped Media Type',
+        415 => 'Unsupported Media Type',
         416 => 'Requested range not satisfiable',
         417 => 'Expectation Failed',
         418 => 'I\'m a teapot',
@@ -131,7 +131,7 @@ enum Status: int
         502 => 'Bad Gateway',
         503 => 'Service Unavailable',
         504 => 'Gateway Time-out',
-        505 => 'HTTP Version not suxped',
+        505 => 'HTTP Version not supported',
         506 => 'Variant Also Negotiates',
         507 => 'Insufficient Storage',
         508 => 'Loop Detected',
