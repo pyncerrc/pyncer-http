@@ -189,7 +189,7 @@ class Uri implements PsrUriInterface
     /**
      * {@inheritdoc}
      */
-    public function withScheme($cheme): static
+    public function withScheme($scheme): static
     {
         $scheme = $this->cleanScheme($scheme);
 
@@ -201,6 +201,7 @@ class Uri implements PsrUriInterface
         $new->setScheme($scheme);
         return $new;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -216,6 +217,7 @@ class Uri implements PsrUriInterface
         $new->setUserInfo($userInfo);
         return $new;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -225,6 +227,7 @@ class Uri implements PsrUriInterface
         $new->setHost($host);
         return $new;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -234,6 +237,7 @@ class Uri implements PsrUriInterface
         $new->setPort($port);
         return $new;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -243,6 +247,7 @@ class Uri implements PsrUriInterface
         $new->setPath($path);
         return $new;
     }
+
     /**
      * {@inheritdoc}
      */
@@ -304,10 +309,12 @@ class Uri implements PsrUriInterface
         $scheme = rtrim($scheme, ':/');
         return $scheme;
     }
+
     protected function cleanUserInfo(string $value): string
     {
         return pyncer_encode_url_user_info($value);
     }
+
     protected function cleanHost($host)
     {
         $host = strtolower($host);
@@ -319,10 +326,12 @@ class Uri implements PsrUriInterface
 
         return $host;
     }
+
     protected function cleanPath(string $value): string
     {
         return pyncer_encode_url_path($value);
     }
+
     protected function cleanPort(?int $value): ?int
     {
         if (!$this->isValidPort($value)) {
@@ -333,6 +342,7 @@ class Uri implements PsrUriInterface
 
         return ($value === null ? null : intval($value));
     }
+
     protected function isStandardPort(string $scheme, ?int $port): bool
     {
         if ($port === null) {
@@ -353,6 +363,7 @@ class Uri implements PsrUriInterface
 
         return true;
     }
+
     protected function isValidPort(?int $port): bool
     {
         if ($port === null) {
@@ -361,12 +372,14 @@ class Uri implements PsrUriInterface
 
         return ($port >= 1 && $port <= 65535);
     }
+
     protected function cleanQuery(string $query): string
     {
         $query = ltrim(strval($query), '?');
 
         return pyncer_encode_url_query($query);
     }
+
     protected function cleanFragment(string $fragment): string
     {
         $fragment = ltrim($fragment, '#');
