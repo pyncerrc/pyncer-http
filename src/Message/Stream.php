@@ -38,6 +38,8 @@ class Stream implements PsrStreamInterface
 
         $metaData = stream_get_meta_data($this->stream);
 
+        $this->size = null;
+
         $this->uri = $metaData['uri'];
 
         $this->isSeekable = $metaData['seekable'];

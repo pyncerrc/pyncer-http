@@ -12,7 +12,7 @@
         "psr/http-factory": "^1.0.1",
         "pyncer/container": "*",
         "pyncer/core": "*",
-        "pyncer/exception": "*"
+        "pyncer/exception": "^1.0"
     },
     "autoload": {
         "psr-4": {

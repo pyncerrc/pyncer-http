@@ -5,7 +5,7 @@ use Psr\Http\Message\StreamInterface as PsrStreamInterface;
 use Pyncer\Exception\InvalidArgumentException;
 use Pyncer\Http\Message\Factory\StreamFactory;
 use Pyncer\Http\Message\Response;
-use Pyncer\Http\Message\DataResponseInterface;
+use Pyncer\Http\Message\JsonResponseInterface;
 use Pyncer\Http\Message\Status;
 use stdClass;
 
@@ -13,18 +13,19 @@ use function count;
 use function is_array;
 use function json_decode;
 use function json_encode;
+use function strval;
 
 use const Pyncer\ENCODING as PYNCER_ENCODING;
 
-class DataResponse extends Response implements DataResponseInterface
+class JsonResponse extends Response implements JsonResponseInterface
 {
-    private array $parsedBody = [];
+    private mixed $parsedBody;
     private bool $resetBody = true; // True when json stream body needs to be set
-    private string $jsonpCallback = '';
+    private string $callback = '';
 
     public function __construct(
         Status $status = Status::SUCCESS_200_OK,
-        array $body = []
+        mixed $body = []
     ) {
         $encoding = strtolower(PYNCER_ENCODING);
 
@@ -42,23 +43,17 @@ class DataResponse extends Response implements DataResponseInterface
         $this->setParsedBody($body);
     }
 
-    public function getJsonpCallback(): string
+    public function getCallback(): string
     {
-        return $this->jsonpCallback;
+        return $this->callback;
     }
-    public function withJsonpCallback(string $value): static
+    protected function setCallback(string $value): static
     {
-        $new = clone $this;
-        $new->setJsonpCallback($value);
-        return $new;
-    }
-    protected function setJsonpCallback(string $value): static
-    {
-        $this->jsonpCallback = $value;
+        $this->callback = $value;
 
         $encoding = strtolower(PYNCER_ENCODING);
 
-        if ($this->jsonpCallback === '') {
+        if ($this->callback === '') {
             $this->setHeader(
                 'Content-Type',
                 'application/json; charset=' . $encoding
@@ -77,40 +72,42 @@ class DataResponse extends Response implements DataResponseInterface
 
         return $this;
     }
+    public function withCallback(string $value): static
+    {
+        $new = clone $this;
+        $new->setCallback($value);
+        return $new;
+    }
 
-    public function getParsedBody(): array
+    public function getParsedBody(): mixed
     {
         return $this->parsedBody;
     }
-    public function withParsedBody(array $value): static
+    protected function setParsedBody(mixed $value): static
     {
-        $new = clone $this;
-        $new->setParsedBody($value);
-        return $new;
-    }
-    protected function setParsedBody(array $value): static
-    {
-        if (!is_array($value)) {
-            throw new InvalidArgumentException(
-                'The specified parsed body value was invalid, expected array.'
-            );
-        }
         $this->parsedBody = $value;
         $this->resetBody = true;
 
         return $this;
     }
+    public function withParsedBody(mixed $value): static
+    {
+        $new = clone $this;
+        $new->setParsedBody($value);
+        return $new;
+    }
+
     public function getBody(): PsrStreamInterface
     {
         if ($this->resetBody) {
-            if ($this->getJsonpCallback() !== '') {
+            $json = json_encode($this->jsonSerialize());
+
+            if ($this->getCallback() !== '') {
                 $this->setBody((new StreamFactory())->createStream(
-                    $this->getJsonpCallback() . '(' . $this->jsonSerialize() . ');'
+                    $this->getCallback() . '(' . $json . ');'
                 ));
             } else {
-                $this->setBody((new StreamFactory())->createStream(
-                    $this->jsonSerialize()
-                ));
+                $this->setBody((new StreamFactory())->createStream($json));
             }
         }
 
@@ -124,30 +121,48 @@ class DataResponse extends Response implements DataResponseInterface
     }
     public function withBody(PsrStreamInterface $body): static
     {
-        if ($body->isSeekable()) {
-            $body->seek(0);
-        }
-
-        $parsedBody = $body->getContents();
+        $parsedBody = strval($response->getBody());
         $parsedBody = json_decode($parsedBody, true);
 
         if ($parsedBody === null) {
-            throw new InvalidArgumentException('Data response body is invalid.');
+            throw new InvalidArgumentException(
+                'JSON response body is invalid.'
+            );
         }
 
         $new = clone $this;
         $new->setParsedBody($parsedBody);
         return $new;
     }
+
     public function jsonSerialize(): mixed
     {
         $body = $this->getParsedBody();
 
-        if (count($body) === 0) {
-            // Ensure empty object vs empty array
+        // Ensure empty object vs empty array
+        if ($body === []) {
             $body = new stdClass();
+        } /* else {
+            $body = $this->serialize($data);
+        } */
+
+        return $body;
+    }
+
+    /* protected function serialize(array $data): array
+    {
+        $serialized = [];
+
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $serialized[$key] = $this->serialize($value);
+            } elseif ($value instanceof JsonSerializable) {
+                $serialized[$key] = $value->jsonSerialize();
+            } else {
+                $serialized[$key] = $value;
+            }
         }
 
-        return json_encode($body);
-    }
+        return $serialized;
+    } */
 }
