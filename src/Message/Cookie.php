@@ -19,12 +19,12 @@ class Cookie
 {
     protected string $name;
     protected string $value;
-    protected int $expires;
-    protected string $path;
-    protected string $domain;
+    protected ?int $expires;
+    protected ?string $path;
+    protected ?string $domain;
     protected bool $secure;
     protected bool $httpOnly;
-    protected bool $sameSite;
+    protected ?string $sameSite;
 
     /**
      * Constructor.
@@ -43,7 +43,7 @@ class Cookie
     public function __construct(
         string $name,
         string $value = '',
-        ?int|string|DateTimeInterface $expires = null,
+        null|int|string|DateTimeInterface $expires = null,
         ?string $path = null,
         ?string $domain = null,
         bool $secure = false,
@@ -57,6 +57,7 @@ class Cookie
         $this->setDomain($domain);
         $this->setSecure($secure);
         $this->setHttpOnly($httpOnly);
+        $this->setSameSite($sameSite);
     }
 
     /**
@@ -113,7 +114,7 @@ class Cookie
     {
         return $this->expires;
     }
-    public function setExpires(?int|string|DateTimeInterface $value): static
+    public function setExpires(null|int|string|DateTimeInterface $value): static
     {
         // Convert expires time to a Unix timestamp
         if ($value instanceof DateTimeInterface) {
@@ -208,7 +209,7 @@ class Cookie
     {
         return $this->sameSite;
     }
-    public function setSameSite(string $value): static
+    public function setSameSite(?string $value): static
     {
         if ($value !== null && !in_array(strtolower($value), ['strict', 'lax', 'none'])) {
             throw new InvalidArgumentException('Same site value is invalid. (' . $value . ')');
@@ -238,6 +239,7 @@ class Cookie
     {
         $s = urlencode($this->getName()) . '=';
 
+        // If no value, expire cookie
         if ($this->getValue() === '') {
             $s .= '; expires=' . date('D, d-M-Y H:i:s T', time() - 31536001);
         } else {
