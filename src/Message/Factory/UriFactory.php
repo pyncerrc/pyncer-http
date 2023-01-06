@@ -31,29 +31,35 @@ class UriFactory implements PsrUriFactoryInterface
             $scheme = 'http';
         }
 
-        if (isset($serverParams['SERVER_NAME'])) {
+        if (isset($serverParams['HTTP_HOST'])) {
+            $host = $serverParams['HTTP_HOST'];
+        } elseif (isset($serverParams['SERVER_NAME'])) {
+            // This doesn't always match the current url
+            // ie. not including www.
             $host = $serverParams['SERVER_NAME'];
-            $port = $serverParams['SERVER_PORT'] ?? '';
-        } else {
-            $host = $serverParams['HTTP_HOST'] ?? '';
-            $port = '';
-
-            if (preg_match('/\A(\[[a-fA-F0-9:.]+])(:\d+)?\z/', $host, $matches)) {
-                if (isset($matches[2])) {
-                    $port = substr($matches[2], 1);
-                }
-
-                if (isset($matches[1])) {
-                    $host = $matches[1];
-                }
-            } elseif (strpos($host, ':') !== false) {
-                $host = explode(':', $host, 2);
-                $port = $host[2] ?? '';
-                $host = $host[1];
-            }
         }
 
-        $port = ($port !== '' ? intval($port) : null);
+        $port = $serverParams['SERVER_PORT'] ?? '';
+
+        if (preg_match('/\A(\[[a-fA-F0-9:.]+])(:\d+)?\z/', $host, $matches)) {
+            if (isset($matches[2])) {
+                $port = substr($matches[2], 1);
+            }
+
+            if (isset($matches[1])) {
+                $host = $matches[1];
+            }
+        } elseif (str_contains($host, ':')) {
+            $host = explode(':', $host, 2);
+            $port = $host[2] ?? '';
+            $host = $host[1];
+        }
+
+        $port = (
+            $port !== '' ?
+            intval($port) :
+            ($scheme === 'https' ? 443 : 80)
+        );
 
         $path = $serverParams['REQUEST_URI'] ?? '/';
         $query = '';
