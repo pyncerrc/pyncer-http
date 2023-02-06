@@ -10,6 +10,7 @@
         "psr/http-server-handler": "^1.0.1",
         "psr/http-server-middleware": "^1.0.1",
         "psr/http-factory": "^1.0.1",
+        "psr/log": "^3.0.0",
         "pyncer/container": "^1.0",
         "pyncer/core": "^1.0",
         "pyncer/exception": "^1.0"
@@ -22,5 +23,10 @@
     "support": {
         "issues": "https://github.com/pyncerrc/pyncer-http/issues",
         "source": "https://github.com/pyncerrc/pyncer-http"
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-main" : "1.0-dev"
+        }
     }
 }
