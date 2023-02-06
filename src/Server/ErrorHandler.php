@@ -1,5 +1,5 @@
 <?php
-namespace Pyncer\App\Runner;
+namespace Pyncer\Http\Server;
 
 use Throwable;
 
