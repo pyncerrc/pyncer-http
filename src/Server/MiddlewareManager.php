@@ -180,7 +180,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
         if ($item instanceof PsrLoggerAwareInterface &&
             $this->logger
         ) {
-            $item->setLogger($logger);
+            $item->setLogger($this->logger);
         }
 
         try {
