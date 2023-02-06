@@ -13,7 +13,7 @@ use function fopen;
 class StreamFactory implements PsrStreamFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createStream(string $content = ''): PsrStreamInterface
     {
@@ -25,14 +25,14 @@ class StreamFactory implements PsrStreamFactoryInterface
         return $stream;
     }
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createStreamFromFile(string $filename, string $mode = 'r'): PsrStreamInterface
     {
         return new FileStream($filename, $mode);
     }
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createStreamFromResource($resource): PsrStreamInterface
     {

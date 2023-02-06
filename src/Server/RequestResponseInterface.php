@@ -7,8 +7,9 @@ use Pyncer\Http\Server\RequestHandlerInterface;
 interface RequestResponseInterface
 {
     /**
-    * @return \Psr\Http\Message\ResponseInterface
-    */
+     * @param \Pyncer\Http\Server\RequestHandlerInterface $handler
+     * @return null|\Psr\Http\Message\ResponseInterface
+     */
     public function getResponse(
         RequestHandlerInterface $handler
     ): ?PsrResponseInterface;

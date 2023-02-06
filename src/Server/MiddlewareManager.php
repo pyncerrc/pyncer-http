@@ -109,13 +109,6 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
         return $count;
     }
 
-    /**
-    * onBefore
-    * onError
-    * onAfter -- Should still execute if error with bool indicating such
-    *
-    */
-
     public function onBefore(callable $callable): static
     {
         // First in, last out

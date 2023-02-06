@@ -10,7 +10,7 @@ use Pyncer\Http\Message\Status;
 class ResponseFactory implements PsrResponseFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createResponse(
         int $code = 200,

@@ -30,8 +30,8 @@ class Request implements PsrRequestInterface
     }
 
     /**
-    * {@inheritdoc}
-    */
+     * @inheritdoc
+     */
     public function getHeader($header): array
     {
         if (!$this->hasHeader($header)) {
@@ -53,7 +53,7 @@ class Request implements PsrRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getHeaders(): array
     {

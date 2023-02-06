@@ -22,7 +22,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withStatus($code, $reasonPhrase = ''): static
     {

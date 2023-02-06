@@ -38,7 +38,7 @@ class Cookie
      * @param bool $httpOnly Whether the cookie will be made accessible only through the HTTP protocol
      * @param ?string $sameSite Whether the cookie should be restricted to same-site context
      *
-     * @throws InvalidArgumentException
+     * @throws \Pyncer\Exception\InvalidArgumentException
      */
     public function __construct(
         string $name,

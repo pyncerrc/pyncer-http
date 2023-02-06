@@ -66,7 +66,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getStream(): PsrStreamInterface
     {
@@ -88,7 +88,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function moveTo($targetPath): void
     {
@@ -141,7 +141,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getSize(): ?int
     {
@@ -149,7 +149,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getError(): int
     {
@@ -157,7 +157,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getClientFilename(): ?string
     {
@@ -165,7 +165,7 @@ class UploadedFile implements PsrUploadedFileInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getClientMediaType(): ?string
     {

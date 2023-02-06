@@ -71,7 +71,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getScheme(): string
     {
@@ -84,7 +84,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAuthority(): string
     {
@@ -104,7 +104,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getUserInfo(): string
     {
@@ -118,7 +118,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getHost(): string
     {
@@ -131,7 +131,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getPort(): ?int
     {
@@ -148,7 +148,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getPath(): string
     {
@@ -161,7 +161,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getQuery(): string
     {
@@ -174,7 +174,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getFragment(): string
     {
@@ -187,7 +187,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withScheme($scheme): static
     {
@@ -203,7 +203,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withUserInfo($user, $password = null): static
     {
@@ -219,7 +219,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withHost($host): static
     {
@@ -229,7 +229,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withPort($port): static
     {
@@ -239,7 +239,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withPath($path): static
     {
@@ -249,7 +249,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withQuery($query): static
     {
@@ -259,7 +259,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withFragment($fragment): static
     {
@@ -388,7 +388,7 @@ class Uri implements PsrUriInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function __toString(): string
     {

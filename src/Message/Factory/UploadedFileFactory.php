@@ -18,7 +18,7 @@ use function Pyncer\Array\set_recursive as pyncer_array_set_recursive;
 class UploadedFileFactory implements PsrUploadedFileFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createUploadedFile(
         PsrStreamInterface $stream,

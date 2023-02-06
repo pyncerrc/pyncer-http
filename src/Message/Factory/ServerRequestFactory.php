@@ -28,7 +28,7 @@ use function ucwords;
 class ServerRequestFactory implements PsrServerRequestFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createServerRequest(
         string $method,

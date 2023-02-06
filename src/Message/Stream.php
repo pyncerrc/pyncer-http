@@ -55,7 +55,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function __toString(): string
     {
@@ -71,7 +71,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function close(): void
     {
@@ -85,7 +85,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function detach(): mixed
     {
@@ -106,7 +106,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getSize(): ?int
     {
@@ -132,7 +132,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function tell(): int
     {
@@ -150,7 +150,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function eof(): bool
     {
@@ -158,7 +158,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function isSeekable(): bool
     {
@@ -166,7 +166,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function seek($offset, $whence = SEEK_SET): void
     {
@@ -184,7 +184,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rewind(): void
     {
@@ -192,7 +192,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function isWritable(): bool
     {
@@ -200,7 +200,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function write($string): int
     {
@@ -220,7 +220,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function isReadable(): bool
     {
@@ -228,7 +228,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function read($length): string
     {
@@ -240,7 +240,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getContents(): string
     {
@@ -262,7 +262,7 @@ class Stream implements PsrStreamInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getMetadata($key = null): mixed
     {

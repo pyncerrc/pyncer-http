@@ -12,7 +12,7 @@ use function is_string;
 class RequestFactory implements PsrRequestFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createRequest(string $method, $uri): PsrRequestInterface
     {

@@ -16,7 +16,7 @@ use function substr;
 class UriFactory implements PsrUriFactoryInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function createUri(string $uri = ''): PsrUriInterface
     {

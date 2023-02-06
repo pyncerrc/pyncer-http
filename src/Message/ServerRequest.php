@@ -37,7 +37,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getServerParams(): array
     {
@@ -50,7 +50,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getCookieParams(): array
     {
@@ -63,7 +63,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withCookieParams(array $cookies): static
     {
@@ -73,7 +73,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getQueryParams(): array
     {
@@ -86,7 +86,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withQueryParams(array $query): static
     {
@@ -96,7 +96,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getUploadedFiles(): array
     {
@@ -112,7 +112,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withUploadedFiles(array $uploadedFiles): static
     {
@@ -122,7 +122,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getParsedBody(): null|array|object
     {
@@ -135,7 +135,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withParsedBody($data): static
     {
@@ -145,7 +145,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAttributes(): array
     {
@@ -158,7 +158,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAttribute($name, $default = null): mixed
     {
@@ -170,7 +170,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withAttribute($name, $value): static
     {
@@ -180,7 +180,7 @@ class ServerRequest implements ServerRequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function withoutAttribute($name): static
     {
