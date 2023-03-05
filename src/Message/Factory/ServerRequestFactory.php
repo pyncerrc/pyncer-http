@@ -40,7 +40,7 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
             $uri = (new UriFactory())->createUri($uri);
         }
 
-        if (!($uri instanceof PsrUriInterface)) {
+        if (!$uri instanceof PsrUriInterface) {
             throw new InvalidArgumentException(
                 'The specified uri must be a string or Psr\Http\Message\UriInterface implementation.'
             );

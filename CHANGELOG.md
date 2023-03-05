@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.3 - 2023-03-05
+
+### Fixed
+
+- Fixed prepend function not merging properly in MiddlewareManager.
+
 ## 1.0.2 - 2023-02-05
 
 ### Fixed

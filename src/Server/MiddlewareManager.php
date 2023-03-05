@@ -87,7 +87,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
         PsrMiddlewareInterface|MiddlewareInterface|callable ...$callable
     ): static
     {
-        array_unshift($this->queue, $callable);
+        $this->queue = array_merge($callable, $this->queue);
         return $this;
     }
 

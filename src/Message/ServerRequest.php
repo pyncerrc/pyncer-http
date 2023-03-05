@@ -199,7 +199,7 @@ class ServerRequest implements ServerRequestInterface
                 continue;
             }
 
-            if (!($file instanceof UploadedFileInterface)) {
+            if (!$file instanceof UploadedFileInterface) {
                 return false;
             }
         }
