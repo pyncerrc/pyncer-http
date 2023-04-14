@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.4 - 2023-04-14
+
+### Fixed
+
+- Fixed issues with MiddlewareManager callbacks.
+
 ## 1.0.3 - 2023-03-05
 
 ### Fixed
