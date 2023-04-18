@@ -24,7 +24,7 @@ class JsonResponse extends Response implements JsonResponseInterface
     private string $callback = '';
 
     public function __construct(
-        Status $status = Status::SUCCESS_200_OK,
+        int|Status $status = Status::SUCCESS_200_OK,
         mixed $body = []
     ) {
         $encoding = strtolower(PYNCER_ENCODING);

@@ -88,7 +88,7 @@ trait MessageTrait
 
         $new = clone $this;
 
-        $new->headers->addHeader($name. $value);
+        $new->headers->addHeader($name, $value);
 
         return $new;
     }

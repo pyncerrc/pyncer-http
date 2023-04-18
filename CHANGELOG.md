@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.1.0 - 2023-04-17
+
+### Added
+
+- Added basic PSR-18 client implementation.
+- Response constructors now support int values for status.
+
+### Fixed
+
+- Fixed error with MessageTrait withAddedHeader function.
+
 ## 1.0.4 - 2023-04-14
 
 ### Fixed

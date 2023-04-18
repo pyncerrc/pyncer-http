@@ -12,11 +12,15 @@ class Response implements ResponseInterface
     use StatusTrait;
 
     public function __construct(
-        Status $status = Status::SUCCESS_200_OK,
+        int|Status $status = Status::SUCCESS_200_OK,
         array $headers = [],
         mixed $body = 'php://temp',
     ) {
-        $this->setStatus($status);
+        if ($status instanceof Status) {
+            $this->setStatus($status);
+        } else {
+            $this->setStatusCode($status);
+        }
         $this->setHeaders($headers);
         $this->setBody($body);
     }

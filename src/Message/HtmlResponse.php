@@ -14,7 +14,7 @@ use const Pyncer\ENCODING as PYNCER_ENCODING;
 class HtmlResponse extends Response implements HtmlResponseInterface
 {
     public function __construct(
-        Status $status = Status::SUCCESS_200_OK,
+        int|Status $status = Status::SUCCESS_200_OK,
         string $body = ''
     ) {
         $encoding = strtolower(PYNCER_ENCODING);
