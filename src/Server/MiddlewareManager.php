@@ -157,7 +157,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
 
         if ($this->beforeCallbacks) {
             try {
-                list ($request, $response) = $this->runCallbacks(
+                [$request, $response] = $this->runCallbacks(
                     $this->beforeCallbacks,
                     $request,
                     $response,
@@ -196,7 +196,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
                 $errorHandler = new ErrorHandler($e);
 
                 try {
-                    list ($request, $response) = $this->runCallbacks(
+                    [$request, $response] = $this->runCallbacks(
                         $this->errorCallbacks,
                         $request,
                         $response,
@@ -204,6 +204,10 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
                         $errorHandler,
                     );
                 } catch (Throwable $e) {
+                    $response = $response->withStatus(
+                        Status::SERVER_ERROR_500_INTERNAL_SERVER_ERROR->getStatusCode()
+                    );
+
                     $errorHandler->setHandled(false);
                 }
 
@@ -225,7 +229,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
 
         if ($this->afterCallbacks) {
             try {
-                list ($request, $response) = $this->runCallbacks(
+                [$request, $response] = $this->runCallbacks(
                     $this->afterCallbacks,
                     $request,
                     $response,

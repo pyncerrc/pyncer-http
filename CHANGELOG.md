@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1 - 2023-04-24
+
+### Fixed
+
+- Added error response code to response when error callback has an error.
+
 ## 1.1.0 - 2023-04-17
 
 ### Added
