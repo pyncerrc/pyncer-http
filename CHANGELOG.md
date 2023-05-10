@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.2 - 2023-05-10
+
+### Fixed
+
+- Fixed ServerRequestFactory not populating parsed body for PATCH and PUT requests when given application/x-www-form-urlencoded data.
+
 ## 1.1.1 - 2023-04-24
 
 ### Fixed

@@ -88,6 +88,10 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
                 );
                 $_POST = $multipart->getData();
                 $_FILES = $multipart->getFiles();
+            } elseif ($contentType === 'application/x-www-form-urlencoded' ||
+                str_starts_with($contentType, 'application/x-www-form-urlencoded;')
+            ) {
+                parse_str(file_get_contents("php://input"), $_POST);
             }
         }
 
@@ -100,7 +104,9 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
         if (in_array($method, ['PATCH', 'POST', 'PUT'])) {
             $contentType = $headers->getHeaderLine('Content-Type');
 
-            if ($contentType === 'application/json') {
+            if ($contentType === 'application/json' ||
+                str_starts_with($contentType, 'application/json;')
+            ) {
                 $data = json_decode(
                     file_get_contents('php://input'),
                     true
