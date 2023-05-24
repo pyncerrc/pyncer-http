@@ -74,7 +74,7 @@ enum Status: int
     case SERVER_ERROR_510_NOT_EXTENDED = 510;
     case SERVER_ERROR_511_NETWORK_AUTHENTICATION_REQUIRED = 511;
 
-    const REASON_PHRASES = [
+    public const REASON_PHRASES = [
         100 => 'Continue',
         101 => 'Switching Protocols',
         102 => 'Processing',
