@@ -37,6 +37,8 @@ class UriFactory implements PsrUriFactoryInterface
             // This doesn't always match the current url
             // ie. not including www.
             $host = $serverParams['SERVER_NAME'];
+        } else {
+            $host = '';
         }
 
         $port = $serverParams['SERVER_PORT'] ?? '';

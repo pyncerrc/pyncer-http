@@ -180,7 +180,9 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
         return $serverParams;
     }
 
-    public function createServerRequestHeaders(): Headers
+    public function createServerRequestHeaders(
+        array $serverParams = []
+    ): Headers
     {
         $headers = [];
 
@@ -192,12 +194,11 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
         }
 
         foreach ($serverParams as $key => $value) {
-            if (strpos($key, 'HTTP_COOKIE') === 0) {
-                // Cookies are handled using the $_COOKIE superglobal
+            if (!is_array($value) && trim(strval($value)) === '') {
                 continue;
             }
 
-            if ($value && strpos($key, 'HTTP_') === 0) {
+            if (str_starts_with($key, 'HTTP_')) {
                 $name = strtr(substr($key, 5), '_', ' ');
                 $name = strtr(ucwords(strtolower($name)), ' ', '-');
                 $name = str_replace('Http-', 'HTTP-', $name);
@@ -205,16 +206,18 @@ class ServerRequestFactory implements PsrServerRequestFactoryInterface
                 continue;
             }
 
-            if ($value && strpos($key, 'CONTENT_') === 0) {
+            if (str_starts_with($key, 'CONTENT_')) {
                 $name = substr($key, 8); // Content-
-                $name = 'Content-' . ($name == 'MD5' ? $name : ucfirst(strtolower($name)));
+                $name = 'Content-' . (
+                    $name == 'MD5' ?
+                    $name :
+                    ucfirst(strtolower($name))
+                );
                 $headers[$name] = $value;
                 continue;
             }
         }
 
-        $headers = new Headers($headers);
-
-        return $headers;
+        return new Headers($headers);
     }
 }
