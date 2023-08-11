@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.3 - 2023-08-11
+
+### Fixed
+
+- Fixed ServerRequestFactory::createServerRequestHeaders missing $serverParams parameter.
+- Fixed undefined variable $host warning in UriFactory.
+
 ## 1.1.2 - 2023-05-10
 
 ### Fixed
