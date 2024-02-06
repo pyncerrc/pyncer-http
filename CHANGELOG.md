@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4 - 2024-02-06
+
+### Changed
+
+- MiddlewareManager callbacks are no longer required to return a response.
+
 ## 1.1.3 - 2023-08-11
 
 ### Fixed

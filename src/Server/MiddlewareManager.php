@@ -260,7 +260,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
         $this->inCallback = true; // Prevent callback invoke recursion
 
         foreach ($callbacks as $callable) {
-            $response = call_user_func_array(
+            $callbackResponse = call_user_func_array(
                 $callable,
                 [$request, $response, $this->getHandler(), $middlewareClass, $errorHandler]
             );
@@ -272,7 +272,11 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
             }
 
             $this->setRequest($request);
-            $this->setResponse($response);
+
+            if ($callbackResponse !== null) {
+                $response = $callbackResponse;
+                $this->setResponse($callbackResponse);
+            }
 
             if ($errorHandler && $errorHandler->getHandled()) {
                 break;
