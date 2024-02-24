@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.5 - Unreleased
+
+### Fixed
+
+- Removed unused function from UploadedFile class.
+
 ## 1.1.4 - 2024-02-06
 
 ### Changed

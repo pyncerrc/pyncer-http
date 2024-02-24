@@ -20,6 +20,9 @@ use function rename;
 use function strpos;
 use function unlink;
 
+use const UPLOAD_ERR_OK;
+use const PHP_SAPI;
+
 class UploadedFile implements PsrUploadedFileInterface
 {
     private ?PsrStreamInterface $stream;
@@ -115,7 +118,7 @@ class UploadedFile implements PsrUploadedFileInterface
                 if (!unlink($this->file)) {
                     throw new RuntimeException('Uploaded file could not be removed after copy.');
                 }
-            } elseif (strpos(PHP_SAPI, 'cli') === 0) {
+            } elseif (PHP_SAPI === 'cli') {
                 if (!rename($this->file, $targetPath)) {
                     throw new RuntimeException('Could not move uploaded file.');
                 }
@@ -133,11 +136,6 @@ class UploadedFile implements PsrUploadedFileInterface
         }
 
         $this->hasMoved = true;
-    }
-
-    private function isSapi(): bool
-    {
-        return (!PHP_SAPI || strpos(PHP_SAPI, 'cli') === 0);
     }
 
     /**
