@@ -5,6 +5,7 @@
 ### Fixed
 
 - Removed unused function from UploadedFile class.
+- Added missing type hints to Uri class.
 
 ## 1.1.4 - 2024-02-06
 

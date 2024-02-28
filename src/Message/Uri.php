@@ -13,10 +13,10 @@ use function strtolower;
 use function strval;
 use function substr;
 use function rtrim;
-use function Pyncer\Http\encode_url_path as pyncer_encode_url_path;
-use function Pyncer\Http\encode_url_query as pyncer_encode_url_query;
-use function Pyncer\Http\encode_url_fragment as pyncer_encode_url_fragment;
-use function Pyncer\Http\encode_url_user_info as pyncer_encode_url_user_info;
+use function Pyncer\Http\encode_uri_path as pyncer_encode_uri_path;
+use function Pyncer\Http\encode_uri_query as pyncer_encode_uri_query;
+use function Pyncer\Http\encode_uri_fragment as pyncer_encode_uri_fragment;
+use function Pyncer\Http\encode_uri_user_info as pyncer_encode_uri_user_info;
 
 class Uri implements PsrUriInterface
 {
@@ -141,7 +141,7 @@ class Uri implements PsrUriInterface
 
         return $this->port;
     }
-    protected function setPort($value): static
+    protected function setPort(?int $value): static
     {
         $this->port = $this->cleanPort($value);
         return $this;
@@ -189,7 +189,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withScheme($scheme): static
+    public function withScheme(string $scheme): static
     {
         $scheme = $this->cleanScheme($scheme);
 
@@ -205,7 +205,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withUserInfo($user, $password = null): static
+    public function withUserInfo(string $user, ?string $password = null): static
     {
         $userInfo = $user;
 
@@ -221,7 +221,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withHost($host): static
+    public function withHost(string $host): static
     {
         $new = clone $this;
         $new->setHost($host);
@@ -231,7 +231,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withPort($port): static
+    public function withPort(?int $port): static
     {
         $new = clone $this;
         $new->setPort($port);
@@ -241,7 +241,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withPath($path): static
+    public function withPath(string $path): static
     {
         $new = clone $this;
         $new->setPath($path);
@@ -251,7 +251,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withQuery($query): static
+    public function withQuery(string $query): static
     {
         $new = clone $this;
         $new->setQuery($query);
@@ -261,7 +261,7 @@ class Uri implements PsrUriInterface
     /**
      * @inheritdoc
      */
-    public function withFragment($fragment): static
+    public function withFragment(string $fragment): static
     {
         $new = clone $this;
         $new->setFragment($fragment);
@@ -312,7 +312,7 @@ class Uri implements PsrUriInterface
 
     protected function cleanUserInfo(string $value): string
     {
-        return pyncer_encode_url_user_info($value);
+        return pyncer_encode_uri_user_info($value);
     }
 
     protected function cleanHost($host)
@@ -329,7 +329,7 @@ class Uri implements PsrUriInterface
 
     protected function cleanPath(string $value): string
     {
-        return pyncer_encode_url_path($value);
+        return pyncer_encode_uri_path($value);
     }
 
     protected function cleanPort(?int $value): ?int
@@ -377,14 +377,14 @@ class Uri implements PsrUriInterface
     {
         $query = ltrim(strval($query), '?');
 
-        return pyncer_encode_url_query($query);
+        return pyncer_encode_uri_query($query);
     }
 
     protected function cleanFragment(string $fragment): string
     {
         $fragment = ltrim($fragment, '#');
 
-        return pyncer_encode_url_fragment($fragment);
+        return pyncer_encode_uri_fragment($fragment);
     }
 
     /**
