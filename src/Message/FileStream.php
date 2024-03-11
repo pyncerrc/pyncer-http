@@ -12,12 +12,12 @@ use function set_error_handler;
 
 class FileStream extends Stream
 {
-    private bool $useReadFile = false;
+    protected bool $useReadFile = false;
 
-    public function __construct(string $file, string $mode = 'r')
-    {
-        $this->file = $file;
-
+    public function __construct(
+        protected string $file,
+        string $mode = 'r'
+    ) {
         set_error_handler(function ($errno, $errstr) {
             throw new RuntimeException(
                 'Invalid file provided for stream; must be a valid path with valid permissions.'
