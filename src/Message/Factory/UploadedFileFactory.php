@@ -15,6 +15,8 @@ use function is_array;
 use function Pyncer\Array\get_recursive as pyncer_array_get_recursive;
 use function Pyncer\Array\set_recursive as pyncer_array_set_recursive;
 
+use const UPLOAD_ERR_OK;
+
 class UploadedFileFactory implements PsrUploadedFileFactoryInterface
 {
     /**

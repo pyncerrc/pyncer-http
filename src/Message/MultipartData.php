@@ -2,6 +2,7 @@
 namespace Pyncer\Http\Message;
 
 use function Pyncer\Array\set_recursive as array_set_recursive;
+use function Pyncer\IO\filesize_from_string as pyncer_filesize_from_string;
 
 use function array_key_exists;
 use function array_pop;
@@ -23,7 +24,10 @@ use function strtolower;
 use function substr;
 use function tmpfile;
 use function trim;
-use function Pyncer\IO\filesize_from_string as pyncer_filesize_from_string;
+
+use const UPLOAD_ERR_OK;
+use const UPLOAD_ERR_INI_SIZE;
+use const UPLOAD_ERR_CANT_WRITE;
 
 class MultipartData
 {
