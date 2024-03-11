@@ -1,11 +1,12 @@
 # Change Log
 
-## 1.1.5 - Unreleased
+## 1.1.5 - 2024-03-11
 
 ### Fixed
 
 - Removed unused function from UploadedFile class.
 - Added missing type hints to Uri class.
+- Added missing property definition to FileStream class.
 
 ## 1.1.4 - 2024-02-06
 
