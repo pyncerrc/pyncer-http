@@ -31,7 +31,7 @@ class JsonResponse extends Response implements JsonResponseInterface
 
         $headers = [
             'Content-Type' => 'application/json; charset=' . $encoding,
-            'Content-Disposition' => 'attachment; filename="data.json"'
+            'Content-Disposition' => 'filename="data.json"'
         ];
 
         parent::__construct(
