@@ -127,7 +127,7 @@ class UploadedFile implements PsrUploadedFileInterface
                     throw new RuntimeException('File is not an uploaded file.');
                 }
 
-                if (move_uploaded_file($this->file, $targetPath) === false) {
+                if (@move_uploaded_file($this->file, $targetPath) === false) {
                     throw new RuntimeException('Could not move uploaded file.');
                 }
             }
