@@ -93,7 +93,7 @@ class UploadedFile implements PsrUploadedFileInterface
     /**
      * @inheritdoc
      */
-    public function moveTo($targetPath): void
+    public function moveTo(string $targetPath): void
     {
         if (!is_string($targetPath) || $targetPath === '') {
             throw new InvalidArgumentException(
@@ -175,7 +175,7 @@ class UploadedFile implements PsrUploadedFileInterface
      *
      * @param string $path
      */
-    private function writeFile($path)
+    private function writeFile(string $path): void
     {
         $handle = fopen($path, 'wb+');
 

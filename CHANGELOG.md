@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.6 - Unreleased
+
+### Changed
+
+- Removed attachment option from Content-Disposition header in JsonResponse.
+- Updated psr/http-message to 2.0.
+
 ## 1.1.5 - 2024-03-11
 
 ### Fixed
