@@ -4,6 +4,9 @@ namespace Pyncer\Http\Message\Factory;
 use Psr\Http\Message\StreamFactoryInterface as PsrStreamFactoryInterface;
 use Psr\Http\Message\StreamInterface as PsrStreamInterface;
 use Pyncer\Exception\RuntimeException;
+use Pyncer\Http\Message\DataStreamInterface;
+use Pyncer\Http\Message\MultipartStream;
+use Pyncer\Http\Message\FormEncodedStream;
 use Pyncer\Http\Message\FileStream;
 use Pyncer\Http\Message\Stream;
 
@@ -24,6 +27,7 @@ class StreamFactory implements PsrStreamFactoryInterface
 
         return $stream;
     }
+
     /**
      * @inheritdoc
      */
@@ -31,6 +35,7 @@ class StreamFactory implements PsrStreamFactoryInterface
     {
         return new FileStream($filename, $mode);
     }
+
     /**
      * @inheritdoc
      */
@@ -43,7 +48,7 @@ class StreamFactory implements PsrStreamFactoryInterface
         return new Stream($resource);
     }
 
-    public static function createStreamFromTemp(string $mode = 'w+'): PsrStreamInterface
+    public function createStreamFromTemp(string $mode = 'w+'): PsrStreamInterface
     {
         $resource = fopen('php://temp', $mode);
 
@@ -65,7 +70,7 @@ class StreamFactory implements PsrStreamFactoryInterface
         return new Stream($resource);
     }
 
-    public static function createStreamFromInput(): PsrStreamInterface
+    public function createStreamFromInput(): PsrStreamInterface
     {
         $resource = fopen('php://input', 'r');
 
@@ -74,5 +79,23 @@ class StreamFactory implements PsrStreamFactoryInterface
         }
 
         return new Stream($resource);
+    }
+
+    public function createStreamFromData(array $data): DataStreamInterface
+    {
+        $isMultipart = false;
+
+        foreach ($data as $value) {
+            if ($value instanceof PsrStreamInterface) {
+                $isMultipart = true;
+                break;
+            }
+        }
+
+        if ($isMultipart) {
+            return new MultipartStream($data);
+        }
+
+        return new FormEncodedStream($data);
     }
 }

@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.2.0 - 2025-02-21
+
+### Added
+
+- Added MultipartStream class.
+- Added FormEncodedStream class.
+- Added StreamFactory::createStreamFromData method.
+
+### Fixed
+
+- Fixed some StreamFactory methods being static.
+
 ## 1.1.6 - 2024-06-12
 
 ### Changed

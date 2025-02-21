@@ -21,12 +21,12 @@ use function var_export;
 
 class Stream implements PsrStreamInterface
 {
-    private $stream;
-    private ?int $size;
-    private ?string $uri;
-    private bool $isSeekable;
-    private bool $isReadable;
-    private bool $isWritable;
+    protected $stream;
+    protected ?int $size;
+    protected ?string $uri;
+    protected bool $isSeekable;
+    protected bool $isReadable;
+    protected bool $isWritable;
 
     public function __construct($stream)
     {
