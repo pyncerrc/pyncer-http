@@ -255,7 +255,7 @@ final class MiddlewareManager implements PsrLoggerAwareInterface
         PsrServerRequestInterface $request,
         PsrResponseInterface $response,
         string $middlewareClass,
-        ErrorHandler $errorHandler = null
+        ?ErrorHandler $errorHandler = null
     ) {
         $this->inCallback = true; // Prevent callback invoke recursion
 

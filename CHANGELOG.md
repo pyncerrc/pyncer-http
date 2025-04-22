@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.1 - Unreleased
+
+### Fixed
+
+- Fixed deprecated implicitly marked nullable parameter.
+
 ## 1.2.0 - 2025-02-21
 
 ### Added

@@ -31,9 +31,9 @@ class StreamFactory implements PsrStreamFactoryInterface
     /**
      * @inheritdoc
      */
-    public function createStreamFromFile(string $filename, string $mode = 'r'): PsrStreamInterface
+    public function createStreamFromFile(string $file, string $mode = 'r'): PsrStreamInterface
     {
-        return new FileStream($filename, $mode);
+        return new FileStream($file, $mode);
     }
 
     /**
