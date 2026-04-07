@@ -74,5 +74,9 @@ class FileStream extends Stream
     public function readFile(): void
     {
         readfile($this->file);
+
+        if ($this->getDeleteFile()) {
+            unlink($this->file);
+        }
     }
 }
