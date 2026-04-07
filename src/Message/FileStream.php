@@ -13,6 +13,7 @@ use function set_error_handler;
 class FileStream extends Stream
 {
     protected bool $useReadFile = false;
+    protected bool $deleteFile = false;
 
     public function __construct(
         protected string $file,
@@ -36,10 +37,12 @@ class FileStream extends Stream
 
         parent::__construct($resource);
     }
+
     public function getFile(): string
     {
         return $this->file;
     }
+
     public function getUseReadFile(): bool
     {
         return $this->useReadFile;
@@ -50,6 +53,24 @@ class FileStream extends Stream
 
         return $this;
     }
+
+    public function getDeleteFile(): bool
+    {
+        return $this->deleteFile;
+    }
+    public function setDeleteFile(bool $value): static
+    {
+        $this->deleteFile = $value;
+
+        if ($value) {
+            // If user terminates download early,
+            // we still want to delete the file
+            ignore_user_abort(true);
+        }
+
+        return $this;
+    }
+
     public function readFile(): void
     {
         readfile($this->file);

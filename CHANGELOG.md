@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.2 - 2026-04-07
+
+### Added
+
+- Added delete file option to FileStream.
+
 ## 1.2.1 - 2025-08-08
 
 ### Fixed
